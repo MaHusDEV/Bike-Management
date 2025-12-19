@@ -22,8 +22,8 @@ It uses **Node.js, TypeScript, Express, MongoDB, EJS**, and includes **authentic
 ### 👥 Default Users (Auto-created)
 | Username | Password | Role   |
 |----------|----------|--------|
-| admin    | admin    | ADMIN  |
-| user     | user     | USER   |
+| admin    | admin    | admin  |
+| user     | user     | user   |
 
 ---
 
