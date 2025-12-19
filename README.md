@@ -1,85 +1,109 @@
-# Devcontainers (1st time setup)
+# 🚴‍♂️ Bike Manager
 
-## Installation
+Bike Manager is a web application for managing a bicycle inventory.  
+It uses **Node.js, TypeScript, Express, MongoDB, EJS**, and includes **authentication, sessions, and role-based access control**.
 
-### install WSL (enkel voor Windows-gebruikers)
+---
 
-Open Powershell **as administrator**.
+## ⭐ Features
 
-Use the following command to check if you have WSL installed and check its version.
-```
-wsl --version
-```
+### 🔐 Authentication & Roles
+- Login, logout, and registration pages  
+- Passwords securely hashed with **bcrypt**
+- Session-based authentication using **express-session**
+- User roles:
+  - **ADMIN** → can edit products
+  - **USER** → view-only mode
+- Redirect logic:
+  - Logged-in users cannot access `/login`
+  - Non-logged users cannot access the dashboard (`/`)
+  - Only ADMIN can access `/edit/:id`
 
-If you have WSL installed, it should show you similar output to this:
+### 👥 Default Users (Auto-created)
+| Username | Password | Role   |
+|----------|----------|--------|
+| admin    | admin    | ADMIN  |
+| user     | user     | USER   |
 
-```
-WSL version: 2.0.14.0
-Kernel version: 5.15.133.1-1
-WSLg version: 1.0.59
-MSRDC version: 1.2.4677
-Direct3D version: 1.611.1-81528511
-DXCore version: 10.0.25131.1002-220531-1700.rs-onecore-base2-hyp
-Windows version: 10.0.22621.3007
-```
+---
 
-If you have WSL installed, update it with the following command:
+## 🗄 Database (MongoDB)
 
-```
-wsl --update
-```
+Collections:
+- **products**
+- **bikeTypes**
+- **users**
 
-**If you don't have WSL installed, use the following command to install WSL**:
+At application startup:
+- If products or bike types collections are empty, data is fetched from the external API and inserted.
+- Default `admin` and `user` accounts are created automatically.
 
-```
-wsl --install
-```
+---
 
-More information at: https://learn.microsoft.com/en-us/windows/wsl/install
+## 🏠 Dashboard
 
-### Install Docker Desktop
+Displays all bikes from MongoDB with:
+- Search bar (filters by name)
+- Sorting (name, category, price, availability)
+- Links to product details
+- Edit button (ADMIN-only)
 
-Go to https://www.docker.com/products/docker-desktop/
+---
 
-Download the installer and execute it.
+## ✏️ Edit Page (ADMIN Only)
 
-### Install Visual Studio Code
+Admin users can update:
+- Name  
+- Category  
+- Price  
+- Description  
+- Availability  
 
-Go to https://code.visualstudio.com/
+---
 
-Download the installer and execute it.
+## 📂 Project Structure
+/auth
+/database.ts
+/server.ts
+/views
+/public/css
+/types
 
-### Install the VS Code Extensions
+---
 
-Open Visual Studio Code.
+## ⚙️ Technologies Used
 
-Open the Extensions tab from the Sidebar.
+- Node.js  
+- TypeScript  
+- Express  
+- MongoDB  
+- bcrypt  
+- express-session  
+- cookie-parser  
+- EJS Templates  
+- CSS  
 
-Search for the "Remote Development" extension pack from Microsoft. https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
+---
 
-This pack installs 4 extensions in VS Code that help you with development on DevContainers.
+## 🚀 Setup
 
-## Starting a DevContainer from a Github Repo
+### 1️⃣ Install dependencies
+### 2️⃣ Create `.env` file: 
+- MONGO_URI="your_mongo_connection_string"
+- SESSION_SECRET="your_secret_here"
+  
+---
 
-Create a new Github Repo, or use an existing Github Repo.
+## ✔️ Assignment Completed
 
- - [ ] Copy the HTTPS Git URL (from the green "Code" button on the repo page).
- - [ ] Open VS Code.
- - [ ] Open the Command Pallette (CTRL + SHIFT + P)
- - [ ] Search for the command called "Dev Containers: Clone Repository in Container Volume..."
- - [ ] Press Enter
- - [ ] Paste the HTTPS Git URL from your Github Repo
- - [ ] Press Enter
+This project includes:
+- MongoDB data load  
+- Data displayed from database  
+- Authentication system  
+- Role-based permissions  
+- Edit functionality  
+- Login, Register, Logout  
+- Secure password hashing  
+- Dashboard protection  
 
-If your Github Repo already has a DevContainer set up (usually a `devcontainer.json` file inside a folder called `.devcontainer`), it will now start the devcontainer. **The first time this will take some time**, as Docker will need to pull (download) all the necessary images.  
-
-If your Github Repo doesn't have a DevContainer set up, VS Code will now ask you several questions:
- - [ ] the type of dev environment you'd like
-   - e.g. typescript & Node, Python, C#, ...
- - [ ] Which version of that dev environment you'd like to use
-   - e.g. The version of Node
- - [ ] What extra tools you'd like to install additionally
-   - e.g. Angular CLI, database tools, ...  
- - [ ] What version of those tools you'd like to use
-
-Once you've answered those questions, it will start up the DevContainer.
+---
