@@ -62,12 +62,12 @@ Admin users can update:
 ---
 
 ## 📂 Project Structure
-/auth
-/database.ts
-/server.ts
-/views
-/public/css
-/types
+- /auth
+- /database.ts
+- /server.ts
+- /views
+- /public/css
+- /types
 
 ---
 
@@ -88,6 +88,9 @@ Admin users can update:
 ## 🚀 Setup
 
 ### 1️⃣ Install dependencies
+- npm install express express-session cookie-parser bcrypt mongodb dotenv ejs
+- npm install --save-dev typescript ts-node nodemon @types/express @types/express-session @types/cookie-parser @types/bcrypt @types/node
+
 ### 2️⃣ Create `.env` file: 
 - MONGO_URI="your_mongo_connection_string"
 - SESSION_SECRET="your_secret_here"
